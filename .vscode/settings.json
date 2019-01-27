@@ -1,0 +1,24 @@
+{
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "files.exclude": {
+    "node_modules/": true,
+    "typings/": true,
+    "target/": true,
+    ".settings/": true
+  },
+  "eslint.validate": ["javascript", "html"],
+  "vetur.validation.style": false,
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "vetur.format.defaultFormatterOptions": {
+    "js-beautify-html": {
+      "wrap_attributes": "auto",
+      "wrap_line_length": 240
+    }
+  },
+  "prettier.eslintIntegration": false,
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  "prettier.printWidth": 140,
+  "window.zoomLevel": 0
+}
