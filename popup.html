@@ -4,11 +4,26 @@
 
   <head>
     <title>Clockify Calculator</title>
+    <style>
+      .main {
+        width: 402px;
+        height: 415px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: relative;
+        background: #fff;
+        overflow: auto;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>Clockify Calculator</h1>
-    <button id="test">Calcuate</button>
+    <div class="main">
+      <h1>Clockify Calculator</h1>
+      <button id="test">Calcuate</button>
+      <div class="result"></div>
+    </div>
+
     <script src="popup.js"></script>
     <script src="lib/lodash.core.js"></script>
     <script src="lib/moment-with-locales.min.js"></script>

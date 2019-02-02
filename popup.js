@@ -18,16 +18,53 @@ chrome.tabs.executeScript(
 function onclickCalculatorBtn() {
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { action: 'mergeSameTaskByDay' }, function(response) {
-      //   console.log(response, _.sumBy)
+      // Init Container
+      const resultContainer = document.querySelector('.result')
+      resultContainer.innerHTML = ''
+
       _.map(_.reverse(response), tasksOnDay => {
-        Object.keys(tasksOnDay.tasks).map(taskName => {
+        const tasksOnDayContainerUI = TaskUIManager.createDay(tasksOnDay.date, tasksOnDay.total)
+
+        const tasks = Object.keys(tasksOnDay.tasks).map(taskName => {
           const durations = tasksOnDay.tasks[taskName].durations
+          // 시간 합 Reference: https://medium.com/@vladbezden/how-to-calculate-total-time-using-moment-js-3cd79345056f
           const totalDuration = durations.slice(1).reduce((prev, cur) => moment.duration(cur).add(prev), moment.duration(durations[0]))
+          const formatedTotalDuration = moment.utc(totalDuration.asMilliseconds()).format('HH:mm:ss')
           console.log(`${taskName}'s total time is: ${moment.utc(totalDuration.asMilliseconds()).format('HH:mm:ss')}`)
-          return totalDuration
+
+          const taskUI = TaskUIManager.createTask(taskName, formatedTotalDuration)
+          tasksOnDayContainerUI.querySelector('ul').appendChild(taskUI)
+          return {
+            taskName,
+            duration: formatedTotalDuration
+          }
         })
-        // 시간 합 Reference: https://medium.com/@vladbezden/how-to-calculate-total-time-using-moment-js-3cd79345056f
+
+        resultContainer.appendChild(tasksOnDayContainerUI)
+        return {
+          date: tasksOnDay.date,
+          total: tasksOnDay.total,
+          tasks
+        }
       })
     })
   })
+}
+
+class TaskUIManager {
+  static createDay(date, total) {
+    const wrapper = document.createElement('div')
+    const h2 = document.createElement('h2')
+    h2.appendChild(document.createTextNode(`Total ${total} on ${date}`))
+    const ul = document.createElement('ul')
+    wrapper.appendChild(h2)
+    wrapper.appendChild(ul)
+    return wrapper
+  }
+
+  static createTask(taskName, duration) {
+    const li = document.createElement('li')
+    li.appendChild(document.createTextNode(`${taskName} ${duration}`))
+    return li
+  }
 }
