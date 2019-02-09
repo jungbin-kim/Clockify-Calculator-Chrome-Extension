@@ -1,3 +1,6 @@
+import { map, reverse } from 'lodash-es'
+import moment from 'moment'
+
 document.querySelector('#test').addEventListener('click', onclickCalculatorBtn)
 
 // 로딩된 페이지를 대상으로 스크립트 실행하기 위함.
@@ -22,7 +25,7 @@ function onclickCalculatorBtn() {
       const resultContainer = document.querySelector('.result')
       resultContainer.innerHTML = ''
 
-      _.map(_.reverse(response), tasksOnDay => {
+      map(reverse(response), tasksOnDay => {
         const tasksOnDayContainerUI = TaskUIManager.createDay(tasksOnDay.date, tasksOnDay.total)
 
         const tasks = Object.keys(tasksOnDay.tasks).map(taskName => {
