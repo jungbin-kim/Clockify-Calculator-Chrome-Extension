@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
-  <!-- manifest.json의 default_popup html은 크롬 확장프로그램이 브라우저에서 클릭했을 때 나타나는 UI -->
-
   <head>
-    <title>Clockify Calculator</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>
+      <%= htmlWebpackPlugin.options.title %>
+    </title>
     <style>
       .main {
         width: 402px;
@@ -23,9 +24,5 @@
       <button id="test">Calcuate</button>
       <div class="result"></div>
     </div>
-
-    <script src="popup.js"></script>
-    <script src="lib/lodash.core.js"></script>
-    <script src="lib/moment-with-locales.min.js"></script>
   </body>
 </html>

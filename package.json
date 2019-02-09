@@ -1,0 +1,32 @@
+{
+  "name": "clockify_calculator_chrome_extension",
+  "version": "1.1.0",
+  "description": "",
+  "scripts": {
+    "build": "webpack --config build/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jungbin-kim/Clockify-Calculator-Chrome-Extension.git"
+  },
+  "keywords": [
+    "Chrome"
+  ],
+  "author": "JB <mail@jungbin.kim>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jungbin-kim/Clockify-Calculator-Chrome-Extension/issues"
+  },
+  "homepage": "https://github.com/jungbin-kim/Clockify-Calculator-Chrome-Extension#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^1.0.1",
+    "copy-webpack-plugin": "^4.6.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.11",
+    "moment": "^2.24.0"
+  }
+}
